@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Weather app</title>
+</head>
+<body>
+
+    <div class="wrapper">
+      <div class="weather">
+        <div class="city"><input type="text" placeholder="Enter Location"><button class="btn">Search<i class="fa fa-search" aria-hidden="true"></i></button></div>
+              <div class="clearfix"></div>
+    
+        <div class="cont">
+          <div class="icon">
+            <i class="fa fa-sun-o spin glow"></i>
+            <i class="fa fa-cloud wind"></i>
+            <i class="fa fa-cloud two"></i>
+          </div>
+          <div class="temp">
+            <div class="current">
+              18&deg;
+            </div>
+            <div class="high">
+              High: 
+            </div>
+            <div class="low">
+              Low: 
+            </div>
+          </div>
+          <div class="clearfix"></div>
+          <div class="date"><p>Today</p></div>
+        </div>
+      </div> <!-- weather -->
+    </div> <!-- wrapper -->
+    
+
+
+    <script>
+
+        let btn = document.querySelector('button')
+        let inp = document.querySelector('input')
+        let cur = document.querySelector('.current')
+        let high = document.querySelector('.high')
+        let low = document.querySelector('.low')
+
+        let apiKey = 'b6d8791b5864b2f37bb866cdb0476d06';
+
+
+        // let i  = navigator.geolocation.getCurrentPosition();
+        
+        // fetch('https://api.openweathermap.org/data/2.5/weather?q='+i+'&appid='+apiKey).then(res => res.json())
+        // .then((data) => {
+        //   cur.innerHTML = Math.round(data.main.temp - 273.15) + '&deg';
+        // })
+
+        
+        btn.addEventListener('click',()=>
+    {
+        fetch('https://api.openweathermap.org/data/2.5/weather?q='+inp.value+'&appid='+apiKey)
+        .then(res => res.json()).then((data) =>
+    {
+        cur.innerHTML = Math.round(data.main.temp - 273.15) + '&deg';
+        high.innerHTML ='High: '+ Math.round(data.main.temp_max   - 273.15) + '&deg'; 
+        low.innerHTML = 'Low: '+ Math.round(data.main.temp_max   - 273.15) + '&deg'; 
+    })
+    })
+
+    </script>
+</body>
+</html>
