@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator</title>
+    <style>
+        div
+        {
+            width: 500px;
+            margin: auto;
+        }
+        div *
+        {
+            display: block;
+            text-align: center;
+            margin: 10px auto;
+        }
+        button
+        {
+            border-radius: 15px;
+            padding: 5px;
+            border: none;
+            background: rgb(62, 239, 8);
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Age Calculator</h1>
+        <h3>Enter your birthdate:</h3>
+        <input type="date">
+        <button>Calculate Age</button>
+        <h2></h2>
+    </div>
+
+    <script>
+
+       let inp = document.querySelector('input')
+       let btn = document.querySelector('button')
+
+       btn.addEventListener('click', () =>
+    {
+        let your_bd = new Date(inp.value)
+        let curr_date = new Date
+
+        let age = curr_date.getFullYear() - your_bd.getFullYear()
+        let month = curr_date.getMonth() - your_bd.getMonth()
+
+        if(month<0  || 
+            (month === 0 && curr_date.getDate() < your_bd.getDate())
+        )
+{
+    age--;
+    document.querySelector('h2').innerHTML = `Your age is ${age}`
+
+}
+else
+{
+    document.querySelector('h2').innerHTML = `Your age is ${age}`
+}
+        
+
+    })
+
+    </script>
+</body>
+</html>
